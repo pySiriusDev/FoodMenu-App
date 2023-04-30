@@ -1,7 +1,7 @@
 interface InputProps {
   label: string
   value: string | number
-  updateValue(value: any): void
+  updateValue(value: unknown): void
 }
 
 export function Input({ label, value, updateValue }: InputProps) {

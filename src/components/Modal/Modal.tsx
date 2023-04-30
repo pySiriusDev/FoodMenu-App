@@ -38,12 +38,19 @@ export function Modal({ handleModal }: ModalProps) {
         <Input label='Price:' value={price} updateValue={setPrice} />
         <Input label='Image:' value={image} updateValue={setImage} />
         <div className='input-container'>
-          <button className='btn-primary' onClick={submit} disabled={isLoading}>
+          <button
+            className='btn btn-primary btn-modal-primary'
+            onClick={submit}
+            disabled={isLoading}
+          >
             {isLoading ? 'Registering...' : 'Register'}
           </button>
         </div>
         <div className='input-container'>
-          <button className='btn-secondary' onClick={cancel}>
+          <button
+            className='btn btn-primary btn-modal-secondary'
+            onClick={cancel}
+          >
             Cancel
           </button>
         </div>

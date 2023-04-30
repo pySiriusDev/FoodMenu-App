@@ -17,6 +17,7 @@ export default function App() {
         {data?.map((data, key) => (
           <Card
             key={key}
+            id={data.id}
             title={data.title}
             image={data.image}
             price={data.price}
@@ -24,7 +25,11 @@ export default function App() {
         ))}
       </div>
       {isModalOpen && <Modal handleModal={handleModal} />}
-      {!isModalOpen && <button onClick={handleModal}>Register New Food</button>}
+      {!isModalOpen && (
+        <button className='btn btn-primary' onClick={handleModal}>
+          Register New Food
+        </button>
+      )}
     </div>
   )
 }
