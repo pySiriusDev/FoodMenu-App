@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFoodDataMutate } from '../../hooks/useFoodDataMutate'
 import { FoodData } from '../../interfaces/FoodData'
 import { Input } from './Input'
@@ -12,8 +12,7 @@ export function Modal({ handleModal }: ModalProps) {
   const [title, setTitle] = useState('')
   const [price, setPrice] = useState(0)
   const [image, setImage] = useState('')
-
-  const { mutate } = useFoodDataMutate()
+  const { mutate, isSuccess, isLoading } = useFoodDataMutate()
 
   const submit = () => {
     const foodData: FoodData = {
@@ -26,6 +25,11 @@ export function Modal({ handleModal }: ModalProps) {
 
   const cancel = () => handleModal()
 
+  useEffect(() => {
+    if (!isSuccess) return
+    handleModal()
+  }, [isSuccess, handleModal])
+
   return (
     <div className='modal-overlay'>
       <form action='' className='modal-body'>
@@ -34,8 +38,8 @@ export function Modal({ handleModal }: ModalProps) {
         <Input label='Price:' value={price} updateValue={setPrice} />
         <Input label='Image:' value={image} updateValue={setImage} />
         <div className='input-container'>
-          <button className='btn-primary' onClick={submit}>
-            Register
+          <button className='btn-primary' onClick={submit} disabled={isLoading}>
+            {isLoading ? 'Registering...' : 'Register'}
           </button>
         </div>
         <div className='input-container'>
