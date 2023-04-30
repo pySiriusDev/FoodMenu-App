@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Card } from './components/Card'
 import { useFoodData } from './hooks/useFoodData'
-import './App.css'
 import { Modal } from './components/Modal/Modal'
+import './App.css'
 
 export default function App() {
   const { data } = useFoodData()
